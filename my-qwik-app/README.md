@@ -38,4 +38,4 @@ There are 3 services in the docker compose stack
 # Recent Results
 
 - Time to Button Visible: 28 ms
-- Time till counter incremented: 6046 ms
+- Time till counter incremented: 34 ms
