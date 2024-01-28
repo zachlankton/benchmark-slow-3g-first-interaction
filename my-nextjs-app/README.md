@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Running Test for Next.js App
 
-## Getting Started
-
-First, run the development server:
+> Tests require docker and docker compose
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd my-nextjs-app
+npm install
+npm run build
+./runTest.sh
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# What happens
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The command above will run the docker compose up commands, capture the exit code from puppeteer and run docker compose down to clean up and remove the test containers.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# How it works
 
-## Learn More
+There are 3 services in the docker compose stack
 
-To learn more about Next.js, take a look at the following resources:
+- The service under test (Next.js)
+- The nginx proxy (throttles the network for us to simulate slow network conditions)
+- The Puppeteer test container (runs our test script against the service under test using the nginx proxy)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# What is tested
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- How long it takes for the button to appear on the page.
+- How long it takes from the time the button is clicked to when the counter widget is incremented.
 
-## Deploy on Vercel
+# Test Steps
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Load Page
+- Wait for button to appear
+- Wait 2 seconds (This is to simulate the delay of a real human seeing the button and clicking it)
+- Start the timer and click the button
+- Wait for the expected results to appear in the counter element
+- If times out after 10 seconds
+  - Wait for Network Idle
+  - Click Again
+  - Repeat Wait sequence for expected results
+- Stop the timer
+- Output the results to `puppeteer-test-results.json`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Recent Results
+
+- Time to Button Visible: 26 ms
+- Time till counter incremented: 25082 ms
+- Had to wait for network idle and click the button a second time: `TRUE`
+- Second Click Response Time: 20 ms
