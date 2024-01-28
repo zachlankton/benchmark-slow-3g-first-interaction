@@ -23,16 +23,22 @@ export default component$(({ value = 50 }: { value?: number }) => {
         ></circle>
 
         <circle
+          id="qwik-circle"
           r="56"
           cx="60"
           cy="60"
           stroke-width="8"
-          style={`transform: rotate(-87.9537deg); stroke-dasharray: ${
-            safeValue * 3.51
-          }, 351.858; fill:none; transform-origin:50% 50%; stroke-linecap:round; stroke:url(#gradient)`}
+          style={{
+            transform: "rotate(-87.9537deg)",
+            strokeDasharray: `${safeValue * 3.51}, 351.858`,
+            fill: "none",
+            transformOrigin: "50% 50%",
+            strokeLinecap: "round",
+            stroke: "url(#gradient)",
+          }}
         ></circle>
       </svg>
-      <span id="quik-test-value" class={styles.value}>
+      <span id="qwik-test-value" class={styles.value}>
         {safeValue}
       </span>
     </div>

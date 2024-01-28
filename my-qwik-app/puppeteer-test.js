@@ -11,7 +11,7 @@ puppeteer.launch({ headless: "new" }).then(async (browser) => {
   page.goto("http://proxy:9173/");
 
   console.log("wait for button");
-  const btn = await page.waitForSelector("#quik-test-button");
+  const btn = await page.waitForSelector("#qwik-test-button");
   const buttonVisible = performance.now();
 
   console.log("wait 2 seconds like a human might to click the button");
@@ -24,7 +24,7 @@ puppeteer.launch({ headless: "new" }).then(async (browser) => {
 
   console.log("wait for value 71");
   const newValElm = await page.waitForSelector(
-    "#quik-test-value ::-p-text(71)",
+    "#qwik-test-value ::-p-text(71)",
     { timeout: 10000 }
   );
 
