@@ -3,7 +3,7 @@
 > Tests require docker and docker compose
 
 ```bash
-cd my-qwik-app
+cd rezact
 npm install
 npm run build
 ./runTest.sh
