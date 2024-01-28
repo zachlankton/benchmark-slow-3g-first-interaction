@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    healthcheck:
+      test:
+        ["CMD-SHELL", "wget --spider --quiet http://localhost:4173 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  proxy:
+    image: nginx
+    volumes:
+      - type: bind
+        source: ./nginx.site.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9173"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  puppeteer:
+    image: ghcr.io/puppeteer/puppeteer:latest
+    init: true
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - ./puppeteer-test.js:/home/pptruser/app/puppeteer.js
+      - ./puppeteer-test-results.json:/home/pptruser/app/puppeteer-test-results.json
+    command: node app/puppeteer.js
+    restart: "no"
+    depends_on:
+      proxy:
+        condition: service_healthy

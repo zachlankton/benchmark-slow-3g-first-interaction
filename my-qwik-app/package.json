@@ -23,9 +23,9 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "pages:deploy": "npm run build && wrangler pages deploy ./dist",
     "pages:dev": "wrangler pages dev --compatibility-date=2024-01-17 -- npm run dev",
-    "preview": "qwik build preview && vite preview --open",
+    "preview": "qwik build preview && vite preview --host",
     "serve": "wrangler pages dev ./dist",
-    "start": "vite --open --mode ssr",
+    "start": "vite --mode ssr",
     "qwik": "qwik"
   },
   "devDependencies": {
