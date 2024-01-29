@@ -1,45 +1,30 @@
-import { component$, sync$, $, useSignal } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
 import styles from "./counter.module.css";
 import Gauge from "../gauge";
 
 export default component$(() => {
-  const count = useSignal(70);
+  const count = useSignal(0);
 
-  // update DOM
-  const countHandler$ = sync$((evt: Event, target: HTMLButtonElement) => {
-    // @ts-ignore
-    const span = (target.span ||= document.getElementById("qwik-test-value"));
-    // @ts-ignore
-    const circle = (target.circle ||= document.getElementById("qwik-circle"));
-
-    const value = Number(span.textContent);
-    const newValue = value + Number(target.dataset.value);
+  const setCount = $((newValue: number) => {
     if (newValue < 0 || newValue > 100) {
       return;
     }
-    circle.style.strokeDasharray = `${newValue * 3.51}, 351.858`;
-    span.textContent = newValue.toString();
-  });
-  // update signal
-  const updateSignal$ = $((evt: Event, target: HTMLButtonElement) => {
-    count.value = Number((target as any).span.textContent);
+    count.value = newValue;
   });
 
   return (
     <div class={styles["counter-wrapper"]}>
       <button
-        data-value="-1"
         class="button-dark button-small"
-        onClick$={[countHandler$, updateSignal$]}
+        onClick$={() => setCount(count.value - 1)}
       >
         -
       </button>
       <Gauge value={count.value} />
       <button
-        id="qwik-test-button"
-        data-value="1"
+        id="test-inc"
         class="button-dark button-small"
-        onClick$={[countHandler$, updateSignal$]}
+        onClick$={() => setCount(count.value + 1)}
       >
         +
       </button>

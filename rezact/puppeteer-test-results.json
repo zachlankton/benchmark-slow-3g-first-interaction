@@ -1,4 +1,9 @@
-{
-  "timeToButtonVisible": 1027.4185229986906,
-  "timeButtonTookToRespond": 20.090128995478153
-}
+[
+  {
+    "testName": "Rezact",
+    "timeToButtonVisible": 1037.2016500234604,
+    "timeButtonTookToRespond": 10.807995021343231,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  }
+]
