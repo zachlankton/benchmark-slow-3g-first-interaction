@@ -1,90 +1,106 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+const testResults = [];
 
-fs.writeFileSync("app/puppeteer-test-results.json", JSON.stringify({}));
+fs.writeFileSync(
+  "app/puppeteer-test-results.json",
+  JSON.stringify(testResults)
+);
 
-puppeteer.launch({ headless: "new" }).then(async (browser) => {
-  const page = await browser.newPage();
+async function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-  let pageLoadStart = performance.now();
-  console.log("goto Page");
-  page.goto("http://proxy:9173/");
+async function runNextJsTest(name, url) {
+  await puppeteer.launch({ headless: "new" }).then(async (browser) => {
+    const page = await browser.newPage();
 
-  console.log("wait for button");
-  let btn = await page.waitForSelector("#test-inc");
-  const buttonVisible = performance.now();
+    let pageLoadStart = performance.now();
+    console.log("goto Page");
+    page.goto(url);
 
-  console.log("wait 1 seconds like a human might to click the button");
-  await sleep(1000);
+    console.log("wait for button");
+    let btn = await page.waitForSelector("#test-inc");
+    const buttonVisible = performance.now();
 
-  console.log("click button");
-  btn = await page.waitForSelector("#test-inc");
-  const startTimer = performance.now();
-  btn.click();
-
-  console.log("wait for value 1");
-  let waiting = true;
-  let failed = false;
-  let counter = 0;
-  while (waiting && !failed) {
-    counter++;
-    await sleep(10);
-    const results = await page.evaluate(() => {
-      const valElm = document.querySelector("#test-value");
-      if (valElm) return valElm.textContent;
-    });
-    if (results === "1") waiting = false;
-    if (counter > 1000) failed = true;
-  }
-
-  let secondButtonClickStart = 0;
-  if (failed) {
-    console.log("failed, waiting for network idle and trying again");
-    await page.waitForNavigation({
-      waitUntil: "networkidle0",
-    });
+    console.log("wait 1 seconds like a human might to click the button");
+    await sleep(1000);
 
     console.log("click button");
-    secondButtonClickStart = performance.now();
     btn = await page.waitForSelector("#test-inc");
+    const startTimer = performance.now();
     btn.click();
 
     console.log("wait for value 1");
     let waiting = true;
+    let failed = false;
     let counter = 0;
-    while (waiting) {
+    while (waiting && !failed) {
       counter++;
       await sleep(10);
       const results = await page.evaluate(() => {
         const valElm = document.querySelector("#test-value");
         if (valElm) return valElm.textContent;
       });
-
       if (results === "1") waiting = false;
-      if (counter > 1000) throw new Error("timeout");
+      if (counter > 1000) failed = true;
     }
-  }
 
-  const endTimer = performance.now();
+    let secondButtonClickStart = 0;
+    if (failed) {
+      console.log("failed, waiting for network idle and trying again");
+      await page.waitForNavigation({
+        waitUntil: "networkidle0",
+      });
 
-  console.log("time diff", endTimer - startTimer);
-  fs.writeFileSync(
-    "app/puppeteer-test-results.json",
-    JSON.stringify(
-      {
-        timeToButtonVisible: buttonVisible - pageLoadStart,
-        timeButtonTookToRespond: endTimer - startTimer,
-        secondButtonClickResponseTime: endTimer - secondButtonClickStart,
-        hadToWaitForNetworkIdleAndClickAgain: failed,
-      },
-      null,
-      2
-    )
+      console.log("click button");
+      secondButtonClickStart = performance.now();
+      btn = await page.waitForSelector("#test-inc");
+      btn.click();
+
+      console.log("wait for value 1");
+      let waiting = true;
+      let counter = 0;
+      while (waiting) {
+        counter++;
+        await sleep(10);
+        const results = await page.evaluate(() => {
+          const valElm = document.querySelector("#test-value");
+          if (valElm) return valElm.textContent;
+        });
+
+        if (results === "1") waiting = false;
+        if (counter > 1000) throw new Error("timeout");
+      }
+    }
+
+    const endTimer = performance.now();
+    testResults.push({
+      testName: name,
+      timeToButtonVisible: buttonVisible - pageLoadStart,
+      timeButtonTookToRespond: endTimer - startTimer,
+      hadToWaitForNetworkIdleAndClickAgain: failed,
+      secondButtonClickResponseTime:
+        failed && endTimer - secondButtonClickStart,
+    });
+
+    console.log("time diff", endTimer - startTimer);
+
+    await browser.close();
+  });
+}
+
+async function run() {
+  await runNextJsTest("standard idiomatic nextjs", "http://proxy:9173/");
+  await runNextJsTest(
+    "optimized using direct DOM API nextjs",
+    "http://proxy:9173/counter2"
   );
 
-  await browser.close();
-});
-
-async function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  fs.writeFileSync(
+    "app/puppeteer-test-results.json",
+    JSON.stringify(testResults, null, 2)
+  );
 }
+
+run();
