@@ -1,1 +1,16 @@
-{"timeButtonTookToRespond":34.420129999518394,"timeToButtonVisible":26.421477004885674}
+[
+  {
+    "testName": "Qwik using standard example",
+    "timeToButtonVisible": 28.255491018295288,
+    "timeButtonTookToRespond": 6055.029271006584,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  },
+  {
+    "testName": "Qwik optimized with direct DOM API",
+    "timeToButtonVisible": 24.96577700972557,
+    "timeButtonTookToRespond": 23.664128005504608,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  }
+]

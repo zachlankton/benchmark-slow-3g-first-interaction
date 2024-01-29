@@ -37,5 +37,12 @@ There are 3 services in the docker compose stack
 
 # Recent Results
 
+### Qwik using standard example
+
+- Time to Button Visible: 28 ms
+- Time till counter incremented: 6055 ms
+
+### Qwik optimized with direct DOM API
+
 - Time to Button Visible: 28 ms
 - Time till counter incremented: 34 ms

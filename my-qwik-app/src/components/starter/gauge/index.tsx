@@ -38,7 +38,7 @@ export default component$(({ value = 50 }: { value?: number }) => {
           }}
         ></circle>
       </svg>
-      <span id="qwik-test-value" class={styles.value}>
+      <span id="test-value" class={styles.value}>
         {safeValue}
       </span>
     </div>
