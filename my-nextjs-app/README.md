@@ -53,5 +53,5 @@ There are 3 services in the docker compose stack
 
 - Time to Button Visible: 25 ms
 - Time till counter incremented: 10 ms
-- Had to wait for network idle and click the button a second time: `TRUE`
+- Had to wait for network idle and click the button a second time: `FALSE`
 - Second Click Response Time: `N/A`
