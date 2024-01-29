@@ -14,8 +14,8 @@ puppeteer.launch({ headless: "new" }).then(async (browser) => {
   const btn = await page.waitForSelector("#qwik-test-button");
   const buttonVisible = performance.now();
 
-  console.log("wait 2 seconds like a human might to click the button");
-  await sleep(2000);
+  console.log("wait 1 second like a human might to click the button");
+  await sleep(1000);
 
   const startTimer = performance.now();
 

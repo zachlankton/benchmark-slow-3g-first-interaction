@@ -14,8 +14,8 @@ puppeteer.launch({ headless: "new" }).then(async (browser) => {
   const btn = await page.waitForSelector("button");
   const buttonVisible = performance.now();
 
-  console.log("wait 2 seconds like a human might to click the button");
-  await sleep(2000);
+  console.log("wait 1 second like a human might to click the button");
+  await sleep(1000);
 
   console.log("click button");
   const startTimer = performance.now();
