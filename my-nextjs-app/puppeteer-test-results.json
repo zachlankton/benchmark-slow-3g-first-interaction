@@ -1,6 +1,16 @@
-{
-  "timeToButtonVisible": 26.160718992352486,
-  "timeButtonTookToRespond": 25082.837748005986,
-  "secondButtonClickResponseTime": 20.5351479947567,
-  "hadToWaitForNetworkIdleAndClickAgain": true
-}
+[
+  {
+    "testName": "standard idiomatic nextjs",
+    "timeToButtonVisible": 28.991371005773544,
+    "timeButtonTookToRespond": 26128.43629400432,
+    "hadToWaitForNetworkIdleAndClickAgain": true,
+    "secondButtonClickResponseTime": 35.16081500053406
+  },
+  {
+    "testName": "optimized using direct DOM API nextjs",
+    "timeToButtonVisible": 25.06740900874138,
+    "timeButtonTookToRespond": 10.80248099565506,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  }
+]

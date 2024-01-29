@@ -42,7 +42,16 @@ There are 3 services in the docker compose stack
 
 # Recent Results
 
-- Time to Button Visible: 26 ms
-- Time till counter incremented: 25082 ms
+### Standard Idiomatic NextJS
+
+- Time to Button Visible: 28 ms
+- Time till counter incremented: 26128 ms
 - Had to wait for network idle and click the button a second time: `TRUE`
-- Second Click Response Time: 20 ms
+- Second Click Response Time: 35 ms
+
+### Optimized using Direct DOM API
+
+- Time to Button Visible: 25 ms
+- Time till counter incremented: 10 ms
+- Had to wait for network idle and click the button a second time: `TRUE`
+- Second Click Response Time: `N/A`
