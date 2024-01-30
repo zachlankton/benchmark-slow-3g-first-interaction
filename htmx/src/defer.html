@@ -1,0 +1,16 @@
+<!doctype html>
+<html class="h-full bg-white" lang="en">
+
+<head>
+
+  <script defer src="/htmx.js"></script>
+</head>
+
+<body class="h-full">
+  <p id="test-value">0</p>
+  <button hx-get="/clicked.html" hx-swap="innerHTML" hx-target="#test-value" id="test-inc">
+    Click Me
+  </button>
+</body>
+
+</html>
