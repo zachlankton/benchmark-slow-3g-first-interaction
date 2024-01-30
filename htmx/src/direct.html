@@ -1,0 +1,22 @@
+<!doctype html>
+<html class="h-full bg-white" lang="en">
+
+<head>
+
+  <script defer src="/htmx.js"></script>
+</head>
+
+<body class="h-full">
+  <p id="test-value">0</p>
+  <button id="test-inc">
+    Click Me
+  </button>
+  <script>
+    document.getElementById("test-inc").addEventListener("click", function (evt) {
+      var currentValue = parseInt(document.getElementById("test-value").innerHTML);
+      document.getElementById("test-value").innerHTML = currentValue + 1;
+    });
+  </script>
+</body>
+
+</html>

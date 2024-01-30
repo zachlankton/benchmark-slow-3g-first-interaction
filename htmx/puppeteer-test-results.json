@@ -1,0 +1,23 @@
+[
+  {
+    "testName": "HTMX Block until JS Loaded",
+    "timeToButtonVisible": 5024.953027009964,
+    "timeButtonTookToRespond": 10.614617019891739,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  },
+  {
+    "testName": "HTMX Load JS Deferred",
+    "timeToButtonVisible": 27.178217977285385,
+    "timeButtonTookToRespond": 11565.491156995296,
+    "hadToWaitForNetworkIdleAndClickAgain": true,
+    "secondButtonClickResponseTime": 31.51443898677826
+  },
+  {
+    "testName": "HTMX Direct DOM API",
+    "timeToButtonVisible": 18.985695987939835,
+    "timeButtonTookToRespond": 11.111783981323242,
+    "hadToWaitForNetworkIdleAndClickAgain": false,
+    "secondButtonClickResponseTime": false
+  }
+]

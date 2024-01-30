@@ -46,9 +46,7 @@ async function runStandardTest(name, url) {
     let secondButtonClickStart = 0;
     if (failed) {
       console.log("failed, waiting for network idle and trying again");
-      await page.waitForNavigation({
-        waitUntil: "networkidle0",
-      });
+      await page.waitForNetworkIdle();
 
       console.log("click button");
       secondButtonClickStart = performance.now();
