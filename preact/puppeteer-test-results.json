@@ -1,0 +1,11 @@
+[
+  {
+    "testName": "Preact",
+    "timeToButtonVisible": 1026.0200120210648,
+    "timeUntiValueUpdated": 11.810785055160522,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
+  }
+]
