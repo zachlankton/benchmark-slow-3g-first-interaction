@@ -15,43 +15,57 @@ The command above will run the docker compose up commands, capture the exit code
 
 There are 3 services in the docker compose stack
 
-- The nginx proxy serves HTMX and throttles to simulate slow 3G
+- The service under test (HTMX)
+- The nginx proxy (throttles the network for us to simulate slow network conditions)
 - The Puppeteer test container (runs our test script against the service under test using the nginx proxy)
 
 # What is tested
 
 - How long it takes for the button to appear on the page.
-- How long it takes from the time the button is clicked to when the counter widget is incremented.
+- How many clicks before the value updates
+- How much time until the value updates
+- How many clicks were missed (did not register or increment the counter)
 
 # Test Steps
 
 - Load Page
 - Wait for button to appear
-- Wait 2 seconds (This is to simulate the delay of a real human seeing the button and clicking it)
 - Start the timer and click the button
-- Wait for the expected results to appear in the counter element
+- Start clicking immediately and repeatedly
+  - Atleast a 250ms sleep inbetween each click, possibly longer due to puppeteer async delays
 - Stop the timer
 - Output the results to `puppeteer-test-results.json`
 
 # Recent Results
 
-### HTMX Block until JS Loaded
-
-- Time to Button Visible: 5024 ms
-- Time till counter incremented: 10 ms
-- Had to wait for network idle and click the button a second time: `FALSE`
-- Second Click Response Time: `N/A`
-
-### HTMX Load JS Deferred
-
-- Time to Button Visible: 27 ms
-- Time till counter incremented: 11565 ms
-- Had to wait for network idle and click the button a second time: `TRUE`
-- Second Click Response Time: 31 ms
-
-### HTMX using Direct DOM API
-
-- Time to Button Visible: 18 ms
-- Time till counter incremented: 11 ms
-- Had to wait for network idle and click the button a second time: `FALSE`
-- Second Click Response Time: `N/A`
+```json
+[
+  {
+    "testName": "HTMX Block until JS Loaded",
+    "timeToButtonVisible": 5029.495365023613,
+    "timeUntiValueUpdated": 270.4117730855942,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
+  },
+  {
+    "testName": "HTMX Load JS Deferred",
+    "timeToButtonVisible": 21.04800307750702,
+    "timeUntiValueUpdated": 5436.511241078377,
+    "buttonClickedCount": 21,
+    "finalCounterValue": 1,
+    "missedClicks": 20,
+    "failed": false
+  },
+  {
+    "testName": "HTMX Direct DOM API",
+    "timeToButtonVisible": 24.070271015167236,
+    "timeUntiValueUpdated": 275.5317260026932,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
+  }
+]
+```

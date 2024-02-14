@@ -1,9 +1,9 @@
-# Running Test for Next.js App
+# Running Test for Preact
 
 > Tests require docker and docker compose
 
 ```bash
-cd my-nextjs-app
+cd preact
 ./runTest.sh
 ```
 
@@ -15,7 +15,7 @@ The command above will run the docker compose up commands, capture the exit code
 
 There are 3 services in the docker compose stack
 
-- The service under test (Next.js)
+- The service under test (Preact)
 - The nginx proxy (throttles the network for us to simulate slow network conditions)
 - The Puppeteer test container (runs our test script against the service under test using the nginx proxy)
 
@@ -41,18 +41,9 @@ There are 3 services in the docker compose stack
 ```json
 [
   {
-    "testName": "standard idiomatic nextjs",
-    "timeToButtonVisible": 27.11117398738861,
-    "timeUntiValueUpdated": 17366.100051045418,
-    "buttonClickedCount": 64,
-    "finalCounterValue": 1,
-    "missedClicks": 63,
-    "failed": false
-  },
-  {
-    "testName": "optimized using direct DOM API nextjs",
-    "timeToButtonVisible": 26.669774055480957,
-    "timeUntiValueUpdated": 1179.2908569574356,
+    "testName": "Preact",
+    "timeToButtonVisible": 1026.0200120210648,
+    "timeUntiValueUpdated": 11.810785055160522,
     "buttonClickedCount": 1,
     "finalCounterValue": 1,
     "missedClicks": 0,

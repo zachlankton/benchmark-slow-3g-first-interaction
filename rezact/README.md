@@ -1,4 +1,4 @@
-# Running Test for Rezact ( Client Side Rendered )
+# Running Test for Rezact
 
 > Tests require docker and docker compose
 
@@ -22,19 +22,32 @@ There are 3 services in the docker compose stack
 # What is tested
 
 - How long it takes for the button to appear on the page.
-- How long it takes from the time the button is clicked to when the counter widget is incremented.
+- How many clicks before the value updates
+- How much time until the value updates
+- How many clicks were missed (did not register or increment the counter)
 
 # Test Steps
 
 - Load Page
 - Wait for button to appear
-- Wait 2 seconds (This is to simulate the delay of a real human seeing the button and clicking it)
 - Start the timer and click the button
-- Wait for the expected results to appear in the counter element
+- Start clicking immediately and repeatedly
+  - Atleast a 250ms sleep inbetween each click, possibly longer due to puppeteer async delays
 - Stop the timer
 - Output the results to `puppeteer-test-results.json`
 
 # Recent Results
 
-- Time to Button Visible: 30 ms
-- Time till counter incremented: 97 ms
+```json
+[
+  {
+    "testName": "Rezact",
+    "timeToButtonVisible": 30.35396099090576,
+    "timeUntiValueUpdated": 1310.7211660146713,
+    "buttonClickedCount": 6,
+    "finalCounterValue": 2,
+    "missedClicks": 4,
+    "failed": false
+  }
+]
+```
