@@ -1,0 +1,3 @@
+```bash
+./runTest.sh
+```

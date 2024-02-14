@@ -1,0 +1,14 @@
+{
+  "\u0000virtual:#vinxi/handler/server-fns.css": {
+    "file": "assets/server-fns-0868ade7.css",
+    "src": "\u0000virtual:#vinxi/handler/server-fns.css"
+  },
+  "virtual:#vinxi/handler/server-fns": {
+    "css": [
+      "assets/server-fns-0868ade7.css"
+    ],
+    "file": "entry.js",
+    "isEntry": true,
+    "src": "virtual:#vinxi/handler/server-fns"
+  }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "testName": "standard idiomatic solid-start",
+    "timeToButtonVisible": 32.75194191932678,
+    "timeUntiValueUpdated": 1047.5482330322266,
+    "buttonClickedCount": 5,
+    "finalCounterValue": 5,
+    "missedClicks": 0,
+    "failed": false
+  }
+]
