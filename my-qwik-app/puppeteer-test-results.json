@@ -1,16 +1,20 @@
 [
   {
     "testName": "Qwik using standard example",
-    "timeToButtonVisible": 28.255491018295288,
-    "timeButtonTookToRespond": 6055.029271006584,
-    "hadToWaitForNetworkIdleAndClickAgain": false,
-    "secondButtonClickResponseTime": false
+    "timeToButtonVisible": 31.133046984672546,
+    "timeUntiValueUpdated": 7259.2627519369125,
+    "buttonClickedCount": 28,
+    "finalCounterValue": 1,
+    "missedClicks": 27,
+    "failed": false
   },
   {
     "testName": "Qwik optimized with direct DOM API",
-    "timeToButtonVisible": 24.96577700972557,
-    "timeButtonTookToRespond": 23.664128005504608,
-    "hadToWaitForNetworkIdleAndClickAgain": false,
-    "secondButtonClickResponseTime": false
+    "timeToButtonVisible": 29.249405026435852,
+    "timeUntiValueUpdated": 1297.0038549900055,
+    "buttonClickedCount": 5,
+    "finalCounterValue": 1,
+    "missedClicks": 4,
+    "failed": false
   }
 ]

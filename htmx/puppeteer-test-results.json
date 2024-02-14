@@ -1,23 +1,29 @@
 [
   {
     "testName": "HTMX Block until JS Loaded",
-    "timeToButtonVisible": 5024.953027009964,
-    "timeButtonTookToRespond": 10.614617019891739,
-    "hadToWaitForNetworkIdleAndClickAgain": false,
-    "secondButtonClickResponseTime": false
+    "timeToButtonVisible": 5029.495365023613,
+    "timeUntiValueUpdated": 270.4117730855942,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
   },
   {
     "testName": "HTMX Load JS Deferred",
-    "timeToButtonVisible": 27.178217977285385,
-    "timeButtonTookToRespond": 11565.491156995296,
-    "hadToWaitForNetworkIdleAndClickAgain": true,
-    "secondButtonClickResponseTime": 31.51443898677826
+    "timeToButtonVisible": 21.04800307750702,
+    "timeUntiValueUpdated": 5436.511241078377,
+    "buttonClickedCount": 21,
+    "finalCounterValue": 1,
+    "missedClicks": 20,
+    "failed": false
   },
   {
     "testName": "HTMX Direct DOM API",
-    "timeToButtonVisible": 18.985695987939835,
-    "timeButtonTookToRespond": 11.111783981323242,
-    "hadToWaitForNetworkIdleAndClickAgain": false,
-    "secondButtonClickResponseTime": false
+    "timeToButtonVisible": 24.070271015167236,
+    "timeUntiValueUpdated": 275.5317260026932,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
   }
 ]

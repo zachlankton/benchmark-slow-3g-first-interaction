@@ -1,3 +1,7 @@
-import { router } from "./appRouter";
+import { render } from "@rezact/rezact";
+import { Page } from "./Pages/CounterTest";
 
-router.routeChanged();
+render(document.getElementById("root"), Page);
+// import { router } from "./appRouter";
+
+// router.routeChanged();

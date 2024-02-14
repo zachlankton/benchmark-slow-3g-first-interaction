@@ -4,8 +4,6 @@
 
 ```bash
 cd rezact
-npm install
-npm run build
 ./runTest.sh
 ```
 
@@ -38,5 +36,5 @@ There are 3 services in the docker compose stack
 
 # Recent Results
 
-- Time to Button Visible: 1027 ms
-- Time till counter incremented: 20 ms
+- Time to Button Visible: 30 ms
+- Time till counter incremented: 97 ms

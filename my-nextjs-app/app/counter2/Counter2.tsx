@@ -1,16 +1,12 @@
 "use client";
-import { useState } from "react";
-
-let initialCount = 0;
-if (typeof window === "object") {
-  const test = document.querySelector("#test-value");
-  if (test) {
-    initialCount = Number(test.innerHTML);
-  }
-}
+import { useState, useLayoutEffect } from "react";
 
 export default function Counter() {
-  const [count, setCounter] = useState(initialCount);
+  const [count, setCounter] = useState(0);
+  const [disabled, setDisabled] = useState(true);
+  useLayoutEffect(() => {
+    setDisabled(false);
+  }, []);
 
   return (
     <div className=" rounded bg-zinc-800 p-8">
@@ -21,6 +17,7 @@ export default function Counter() {
 
       <div className="flex items-stretch gap-12">
         <button
+          disabled={disabled}
           id="test-dec"
           onClick={() => setCounter(count - 1)}
           className="flex-1"
@@ -28,6 +25,7 @@ export default function Counter() {
           Dec
         </button>
         <button
+          disabled={disabled}
           id="test-inc"
           onClick={() => setCounter(count + 1)}
           className="flex-1"

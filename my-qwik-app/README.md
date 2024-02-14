@@ -4,7 +4,6 @@
 
 ```bash
 cd my-qwik-app
-npm install
 ./runTest.sh
 ```
 

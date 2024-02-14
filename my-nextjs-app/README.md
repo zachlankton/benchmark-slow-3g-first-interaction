@@ -4,8 +4,6 @@
 
 ```bash
 cd my-nextjs-app
-npm install
-npm run build
 ./runTest.sh
 ```
 

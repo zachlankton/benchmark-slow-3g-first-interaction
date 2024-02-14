@@ -1,9 +1,11 @@
 [
   {
     "testName": "Rezact",
-    "timeToButtonVisible": 1037.2016500234604,
-    "timeButtonTookToRespond": 10.807995021343231,
-    "hadToWaitForNetworkIdleAndClickAgain": false,
-    "secondButtonClickResponseTime": false
+    "timeToButtonVisible": 30.35396099090576,
+    "timeUntiValueUpdated": 1310.7211660146713,
+    "buttonClickedCount": 6,
+    "finalCounterValue": 2,
+    "missedClicks": 4,
+    "failed": false
   }
 ]

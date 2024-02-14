@@ -1,11 +1,12 @@
 {
-  "name": "appsx",
+  "name": "rezact",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "debug": "node --inspect=0.0.0.0:9229 node_modules/vite/bin/vite.js build",
     "preview": "vite preview --host"
   },
   "devDependencies": {
@@ -17,10 +18,10 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "3.4.0",
     "typescript": "*",
-    "vite": "5.0.12"
+    "vite": "5.1.1"
   },
   "dependencies": {
-    "@rezact/rezact": "v1.0.15-beta.53",
+    "@rezact/rezact": "v1.0.15-beta.55",
     "@tailwindcss/forms": "^0.5.7",
     "boxicons": "^2.1.4",
     "monaco-editor": "^0.45.0"

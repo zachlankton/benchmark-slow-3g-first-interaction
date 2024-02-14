@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "testName": "standard idiomatic nextjs",
+    "timeToButtonVisible": 27.11117398738861,
+    "timeUntiValueUpdated": 17366.100051045418,
+    "buttonClickedCount": 64,
+    "finalCounterValue": 1,
+    "missedClicks": 63,
+    "failed": false
+  },
+  {
+    "testName": "optimized using direct DOM API nextjs",
+    "timeToButtonVisible": 26.669774055480957,
+    "timeUntiValueUpdated": 1179.2908569574356,
+    "buttonClickedCount": 1,
+    "finalCounterValue": 1,
+    "missedClicks": 0,
+    "failed": false
+  }
+]

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+npm install
+npm run build
+
 chmod 777 puppeteer-test-results.json
 
 docker compose up --exit-code-from puppeteer
